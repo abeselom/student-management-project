@@ -1,0 +1,2 @@
+service { CRUD-DB entities = { JpaProject = "ejb-core" , entity =
+"vn.csc.finalproject.ejb.entity.Student" {} } }

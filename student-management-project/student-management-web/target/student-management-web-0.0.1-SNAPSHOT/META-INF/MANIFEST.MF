@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Class-Path: jstl-1.2.jar 
+ standard-1.0.6.jar 
+ spring-context-3.1.1.RELEASE.jar 
+ spring-aop-3.1.1.RELEASE.jar 
+ aopalliance-1.0.jar 
+ spring-asm-3.1.1.RELEASE.jar 
+ spring-beans-3.1.1.RELEASE.jar 
+ spring-core-3.1.1.RELEASE.jar 
+ commons-logging-1.1.1.jar 
+ spring-expression-3.1.1.RELEASE.jar 
+ spring-web-3.1.1.RELEASE.jar 
+ spring-webmvc-3.1.1.RELEASE.jar 
+ spring-context-support-3.1.1.RELEASE.jar 
+ javassist-3.11.0.GA.jar 
+ javaee-api-6.0.jar
+
