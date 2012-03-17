@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="ejb-core" transaction-type="RESOURCE_LOCAL">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<class>vn.csc.finalproject.ejb.entity.Clazz</class>
+		<class>vn.csc.finalproject.ejb.entity.ClazzDetail</class>
+		<class>vn.csc.finalproject.ejb.entity.Student</class>
+		<class>vn.csc.finalproject.ejb.entity.User</class>
+		<properties>
+			<property name="eclipselink.target-server" value="WebLogic" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/studentdb" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="eclipelink.ddl-generation" value="create-tables" />
+			<property name="eclipelink.jdbc.connections.min" value="1" />
+			<property name="eclipelink.jdbc.connections.max" value="2" />
+			<property name="eclipelink.logging.level" value="FINEST" />
+		</properties>
+	</persistence-unit>
+</persistence>
