@@ -19,15 +19,8 @@ public class StudentServiceImpl implements StudentService {
 	protected DTOUtils convertService = new DTOUtils();
 
 	@Override
-	public StudentDTO mergeStudent(StudentDTO studentDTO) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void removeStudent(StudentDTO studentDTO) {
-		// TODO Auto-generated method stub
-
+	public void removeStudent(int studentId) {
+		studentBeanRemote.removeStudent(studentId);
 	}
 
 	public StudentServiceImpl() {
@@ -92,7 +85,13 @@ public class StudentServiceImpl implements StudentService {
 	
 	public static void main(String[] args) {
 		StudentServiceImpl ssi = new StudentServiceImpl();
+		ssi.updateStudent(10, "10", "email10", "address10");
+		ssi.removeStudent(9);
 		System.out.println(ssi.getNumberOfStudents());
-		System.out.println(ssi.persistStudent("name", "email", "address"));
+	}
+
+	@Override
+	public void updateStudent(int studentId, String name, String email, String address) {
+		studentBeanRemote.updateStudent(studentId, name, email, address);
 	}
 }

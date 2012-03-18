@@ -8,9 +8,7 @@ import vn.csc.finalproject.dto.StudentDTO;
 public interface StudentService {
 	public StudentDTO persistStudent(String name, String email, String address);
 
-	public StudentDTO mergeStudent(StudentDTO studentDTO);
-
-	public void removeStudent(StudentDTO studentDTO);
+	public void removeStudent(int studentId);
 
 	public int getNumberOfStudents();
 
@@ -19,4 +17,6 @@ public interface StudentService {
 	public StudentDTO getStudentById(int studentId);
 
 	public List<ClazzDTO> getClassByStudentId(int studentId);
+	
+	public void updateStudent(int studentId, String name, String email, String address);
 }

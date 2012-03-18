@@ -53,12 +53,21 @@ public class StudentBean implements StudentBeanLocal, StudentBeanRemote {
 
 	}
 
-	public Student mergeStudent(Student student) {
-		return em.merge(student);
+	@Override
+	public void updateStudent(int studentId, String name, String email, String address) {
+		try {
+			Student student = em.find(Student.class, studentId);
+			student.setAddress(address);
+			student.setEmail(email);
+			student.setName(name);
+			em.merge(student);
+		} catch (Exception e) {
+			throw new EJBException(e.getMessage());
+		}
 	}
 
-	public void removeStudent(Student student) {
-		student = em.find(Student.class, student.getStudentId());
+	public void removeStudent(int studentId) {
+		Student student = em.find(Student.class, studentId);
 		em.remove(student);
 	}
 
