@@ -23,8 +23,6 @@ public class StudentBean implements StudentBeanLocal, StudentBeanRemote {
 
 	@PersistenceContext(unitName = "ejb-core")
 	private EntityManager em;
-	@Resource(mappedName = "jdbc/project")
-	DataSource dataSource;
 
 	public StudentBean() {
 	}
