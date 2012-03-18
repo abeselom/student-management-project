@@ -1,12 +1,17 @@
 package vn.csc.finalproject.ejb.entity.clazz;
 
+import java.util.Date;
+
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+
 import vn.csc.finalproject.ejb.entity.Clazz;
 
 @Stateless(name = "ClassBean", mappedName = "clazz")
@@ -31,6 +36,7 @@ public class ClassBean implements ClassBeanLocal, ClassBeanRemote {
 		return query.getResultList();
 	}
 
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public Clazz persistClazz(Clazz clazz) {
 		try {
 			em.persist(clazz);
@@ -41,20 +47,25 @@ public class ClassBean implements ClassBeanLocal, ClassBeanRemote {
 		return clazz;
 	}
 
-	public Clazz mergeClazz(Clazz clazz) {
+
+	public void removeClazz(int clazzId) {
 		try {
-			return em.merge(clazz);
+			Clazz clazz = em.find(Clazz.class, clazzId);
+			if (clazz != null) {
+				em.remove(clazz);
+			}
 		} catch (Exception e) {
 			throw new EJBException(e.getMessage());
 		}
 	}
 
-	public void removeClazz(Clazz clazz) {
+	@Override
+	public void updateClazz(int clazzId, Date dateTime, String subject) {
 		try {
-			clazz = em.find(Clazz.class, clazz.getClazz_ID());
-			if (clazz != null) {
-				em.remove(clazz);
-			}
+			Clazz clazz = em.find(Clazz.class, clazzId);
+			clazz.setDaytime(dateTime);
+			clazz.setSubject(subject);
+			em.merge(clazz);
 		} catch (Exception e) {
 			throw new EJBException(e.getMessage());
 		}

@@ -1,6 +1,9 @@
 package vn.csc.finalproject.ejb.entity.clazz;
 
+import java.util.Date;
+
 import javax.ejb.Remote;
+
 import vn.csc.finalproject.ejb.entity.Clazz;
 
 @Remote
@@ -10,7 +13,7 @@ public interface ClassBeanRemote {
 
 	public Clazz persistClazz(Clazz clazz);
 
-	public Clazz mergeClazz(Clazz clazz);
+	public void updateClazz(int clazzId, Date dateTime, String subject);
 
-	public void removeClazz(Clazz clazz);
+	public void removeClazz(int clazzId);
 }
