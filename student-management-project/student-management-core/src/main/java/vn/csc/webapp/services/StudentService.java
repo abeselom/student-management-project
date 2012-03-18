@@ -4,7 +4,6 @@ import java.util.List;
 
 import vn.csc.finalproject.dto.ClazzDTO;
 import vn.csc.finalproject.dto.StudentDTO;
-import vn.csc.finalproject.ejb.entity.Student;
 
 public interface StudentService {
 	public StudentDTO persistStudent(String name, String email, String address);
