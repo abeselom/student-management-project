@@ -28,16 +28,31 @@ public class ClassBean implements ClassBeanLocal, ClassBeanRemote {
 	}
 
 	public Clazz persistClazz(Clazz clazz) {
-		em.persist(clazz);
+		try {
+			em.persist(clazz);
+			em.flush();
+		} catch (Exception e) {
+			throw new EJBException(e.getMessage());
+		}
 		return clazz;
 	}
 
 	public Clazz mergeClazz(Clazz clazz) {
-		return em.merge(clazz);
+		try {
+			return em.merge(clazz);
+		} catch (Exception e) {
+			Sthrow new EJBException(e.getMessage());
+		}
 	}
 
 	public void removeClazz(Clazz clazz) {
-		clazz = em.find(Clazz.class, clazz.getClazz_ID());
-		em.remove(clazz);
+		try {
+			clazz = em.find(Clazz.class, clazz.getClazz_ID());
+			if (clazz != null) {
+				em.remove(clazz);
+			}
+		} catch (Exception e) {
+			throw new EJBException(e.getMessage());
+		}
 	}
 }

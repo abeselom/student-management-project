@@ -23,9 +23,9 @@ public class StudentBean implements StudentBeanLocal, StudentBeanRemote {
 
 	@PersistenceContext(unitName = "ejb-core")
 	private EntityManager em;
-	@Resource(mappedName="jdbc/project")
+	@Resource(mappedName = "jdbc/project")
 	DataSource dataSource;
-	
+
 	public StudentBean() {
 	}
 
@@ -47,14 +47,15 @@ public class StudentBean implements StudentBeanLocal, StudentBeanRemote {
 			em.persist(student);
 			em.flush();
 		} catch (Exception e) {
-			System.err.println(e.getMessage().toString());
+			throw new EJBException(e.getMessage());
 		}
 		return student;
 
 	}
 
 	@Override
-	public void updateStudent(int studentId, String name, String email, String address) {
+	public void updateStudent(int studentId, String name, String email,
+			String address) {
 		try {
 			Student student = em.find(Student.class, studentId);
 			student.setAddress(address);
@@ -66,9 +67,10 @@ public class StudentBean implements StudentBeanLocal, StudentBeanRemote {
 		}
 	}
 
+	@Override
 	public boolean removeStudent(int studentId) {
 		Student student = em.find(Student.class, studentId);
-		if(student != null) {
+		if (student != null) {
 			em.remove(student);
 			return true;
 		}
@@ -108,9 +110,12 @@ public class StudentBean implements StudentBeanLocal, StudentBeanRemote {
 			StringBuilder stringBuilder = new StringBuilder();
 			stringBuilder.append("SELECT c FROM Clazz c WHERE c.clazz_ID IN (");
 			stringBuilder.append("SELECT clazz.clazz_ID ");
-			stringBuilder.append("FROM Clazz clazz, ClazzDetail clazz_detail, Student student ");
-			stringBuilder.append("WHERE clazz.clazz_ID = clazz_detail.clazz.clazz_ID ");
-			stringBuilder.append("AND clazz_detail.student.studentId = student.studentId ");
+			stringBuilder
+					.append("FROM Clazz clazz, ClazzDetail clazz_detail, Student student ");
+			stringBuilder
+					.append("WHERE clazz.clazz_ID = clazz_detail.clazz.clazz_ID ");
+			stringBuilder
+					.append("AND clazz_detail.student.studentId = student.studentId ");
 			stringBuilder.append("AND student.studentId = :studentId)");
 			Query query = em.createQuery(stringBuilder.toString());
 			query.setParameter("studentId", studentId);
@@ -141,7 +146,7 @@ public class StudentBean implements StudentBeanLocal, StudentBeanRemote {
 		String stringQuery = "SELECT s FROM Student s WHERE s.name LIKE :studentName";
 		Query query = em.createQuery(stringQuery);
 		query.setParameter("studentName", name);
-		List<Student> studentList = (List<Student>)query.getResultList();
+		List<Student> studentList = (List<Student>) query.getResultList();
 		return studentList;
 	}
 }

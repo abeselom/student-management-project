@@ -10,7 +10,9 @@ import vn.csc.finalproject.ejb.entity.ClazzDetail;
 import vn.csc.finalproject.ejb.entity.Student;
 
 @Stateless(name = "ClazzDetailBean", mappedName = "clazzDetail")
-public class ClazzDetailBean implements ClazzDetailBeanLocal, ClazzDetailBeanRemote {
+@TransactionManagement(TransactionManagementType.CONTAINER)
+public class ClazzDetailBean implements ClazzDetailBeanLocal,
+		ClazzDetailBeanRemote {
 
 	@PersistenceContext(unitName = "ejb-core")
 	private EntityManager em;
@@ -31,18 +33,33 @@ public class ClazzDetailBean implements ClazzDetailBeanLocal, ClazzDetailBeanRem
 	}
 
 	public ClazzDetail persistClazzDetail(ClazzDetail clazzDetail) {
-		em.persist(clazzDetail);
+		try {
+			em.persist(clazzDetail);
+			em.flush();
+		} catch (Exception e) {
+			throw new EJBException(e.getMessage());
+		}
 		return clazzDetail;
 	}
 
 	public ClazzDetail mergeClazzDetail(ClazzDetail clazzDetail) {
-		return em.merge(clazzDetail);
+		try {
+			return em.merge(clazzDetail);
+		} catch (Exception e) {
+			throw new EJBException(e.getMessage());
+		}
 	}
 
 	public void removeClazzDetail(ClazzDetail clazzDetail) {
-		clazzDetail = em.find(ClazzDetail.class,
-				clazzDetail.getClazz_DETAIL_ID());
-		em.remove(clazzDetail);
+		try {
+			clazzDetail = em.find(ClazzDetail.class,
+					clazzDetail.getClazz_DETAIL_ID());
+			if (clazzDetail != null) {
+				em.remove(clazzDetail);
+			}
+		} catch (Exception e) {
+			throw new EJBException(e.getMessage());
+		}
 	}
 
 	@SuppressWarnings("unchecked")
