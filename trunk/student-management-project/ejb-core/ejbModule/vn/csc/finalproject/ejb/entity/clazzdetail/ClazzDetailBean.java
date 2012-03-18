@@ -2,14 +2,15 @@ package vn.csc.finalproject.ejb.entity.clazzdetail;
 
 import java.util.List;
 
-import javax.ejb.EJBException;
 import javax.ejb.Stateless;
-import javax.ejb.TransactionManagement;
-import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.ejb.EJBException;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 import javax.persistence.Query;
-
 import vn.csc.finalproject.ejb.entity.ClazzDetail;
 import vn.csc.finalproject.ejb.entity.Student;
 
@@ -48,7 +49,11 @@ public class ClazzDetailBean implements ClazzDetailBeanLocal,
 
 	public ClazzDetail mergeClazzDetail(ClazzDetail clazzDetail) {
 		try {
-			return em.merge(clazzDetail);
+			ClazzDetail cd = em.find(ClazzDetail.class, clazzDetail.getClazz_DETAIL_ID());
+			cd.setClazz(clazzDetail.getClazz());
+			cd.setClazz_DETAIL_ID(clazzDetail.getClazz_DETAIL_ID());
+			cd.setStudent(clazzDetail.getStudent());
+			return em.merge(cd);
 		} catch (Exception e) {
 			throw new EJBException(e.getMessage());
 		}
@@ -69,11 +74,15 @@ public class ClazzDetailBean implements ClazzDetailBeanLocal,
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Student> GetStudentByClass(int ClazzID) {
-		String str = "SELECT DISTINCT stu FROM Student stu WHERE stu.student_id IN "
-				+ "(SELECT detail.student_id FROM ClazzDetail detail WHERE detail.clazz_id = :id)";
-		Query query = em.createQuery(str);
-		query.setParameter("id", ClazzID);
-		List<Student> rs = (List<Student>) query.getResultList();
-		return rs;
+		try {
+			String str = "SELECT DISTINCT stu FROM Student stu WHERE stu.student_id IN "
+					+ "(SELECT detail.student_id FROM ClazzDetail detail WHERE detail.clazz_id = :id)";
+			Query query = em.createQuery(str);
+			query.setParameter("id", ClazzID);
+			List<Student> rs = (List<Student>) query.getResultList();
+			return rs;
+		} catch (Exception e) {
+			throw new EJBException(e.getMessage());
+		}
 	}
 }
