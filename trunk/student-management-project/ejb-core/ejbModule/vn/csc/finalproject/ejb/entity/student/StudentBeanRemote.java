@@ -14,9 +14,7 @@ public interface StudentBeanRemote {
 
 	public Student persistStudent(Student student);
 
-	public Student mergeStudent(Student student);
-
-	public void removeStudent(Student student);
+	public void removeStudent(int studentId);
 	
 	public List<Student> getAllStudent();
 	
@@ -29,4 +27,6 @@ public interface StudentBeanRemote {
     public boolean studentExited(int id);
     
     public List<Student> getStudentListByName(String name);
+    
+    public void updateStudent(int studentId, String name, String email, String address);
 }
