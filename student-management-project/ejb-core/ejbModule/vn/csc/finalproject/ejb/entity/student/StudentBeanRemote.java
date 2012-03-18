@@ -28,5 +28,5 @@ public interface StudentBeanRemote {
     
     public boolean studentExited(int id);
     
-    public boolean studentExited(String name);
+    public List<Student> getStudentListByName(String name);
 }
