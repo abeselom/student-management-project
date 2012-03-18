@@ -4,6 +4,7 @@ import java.util.List;
 
 import vn.csc.finalproject.dto.ClazzDTO;
 import vn.csc.finalproject.dto.StudentDTO;
+import vn.csc.finalproject.ejb.entity.Student;
 
 public interface StudentService {
 	public StudentDTO persistStudent(String name, String email, String address);
@@ -19,4 +20,6 @@ public interface StudentService {
 	public List<ClazzDTO> getClassByStudentId(int studentId);
 	
 	public void updateStudent(int studentId, String name, String email, String address);
+	
+	public List<StudentDTO> getStudentListByName(String name);
 }

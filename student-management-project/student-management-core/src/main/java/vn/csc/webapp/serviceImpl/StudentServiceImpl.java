@@ -85,13 +85,27 @@ public class StudentServiceImpl implements StudentService {
 	
 	public static void main(String[] args) {
 		StudentServiceImpl ssi = new StudentServiceImpl();
-		ssi.updateStudent(10, "10", "email10", "address10");
-		ssi.removeStudent(9);
-		System.out.println(ssi.getNumberOfStudents());
+		ssi.updateStudent(10, "10", "email", "address10");
+		//ssi.removeStudent(9);
+		System.out.println(ssi.getStudentListByName("student%").size());
 	}
 
 	@Override
 	public void updateStudent(int studentId, String name, String email, String address) {
 		studentBeanRemote.updateStudent(studentId, name, email, address);
+	}
+
+	@Override
+	public List<StudentDTO> getStudentListByName(String name) {
+		List<Student> studentList = new ArrayList<Student>();
+		List<StudentDTO> studentDTOList = new ArrayList<StudentDTO>();
+		if (studentBeanRemote != null)
+			studentList = studentBeanRemote.getStudentListByName(name);
+		for (Student student : studentList) {
+			StudentDTO studentDTO = new StudentDTO();
+			studentDTO = convertService.convertStudentToStudentDTO(student);
+			studentDTOList.add(studentDTO);
+		}
+		return studentDTOList;
 	}
 }
