@@ -6,6 +6,8 @@ import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -34,6 +36,7 @@ public class UserBean implements UserBeanLocal, UserBeanRemote {
 		return query.getResultList();
 	}
 
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public User persistUser(User user) {
 		try {
 			em.persist(user);
@@ -41,20 +44,13 @@ public class UserBean implements UserBeanLocal, UserBeanRemote {
 		} catch (Exception e) {
 			throw new EJBException(e.getMessage());
 		}
+		em.flush();
 		return user;
 	}
-
-	public User mergeUser(User user) {
+	
+	public void removeUser(String username) {
 		try {
-			return em.merge(user);
-		} catch (Exception e) {
-			throw new EJBException(e.getMessage());
-		}
-	}
-
-	public void removeUser(User user) {
-		try {
-			user = em.find(User.class, user.getUsername());
+			User user = em.find(User.class, username);
 			if (user != null) {
 				em.remove(user);
 			}
@@ -81,10 +77,8 @@ public class UserBean implements UserBeanLocal, UserBeanRemote {
 			String str = "SELECT a FROM User a WHERE a.username = :name";
 			Query query = em.createQuery(str);
 			query.setParameter("name", Username);
-
 			User rs = ((List<User>) query.getResultList()).get(0);
 			rs.setType(iType);
-
 			return em.merge(rs);
 		}
 		return null;
@@ -114,5 +108,13 @@ public class UserBean implements UserBeanLocal, UserBeanRemote {
 		if (this.getUserByName(username) == null)
 			rs = false;
 		return rs;
+	}
+	
+	public void updateUser(String username, String password, String email, int type) {
+		User user = em.find(User.class, username);
+		user.setEmail(email);
+		user.setPassword(password);
+		user.setType(type);
+		em.merge(user);
 	}
 }

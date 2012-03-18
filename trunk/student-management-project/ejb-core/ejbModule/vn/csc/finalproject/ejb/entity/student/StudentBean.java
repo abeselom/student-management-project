@@ -2,7 +2,6 @@ package vn.csc.finalproject.ejb.entity.student;
 
 import java.util.List;
 
-import javax.annotation.Resource;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -12,7 +11,6 @@ import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.sql.DataSource;
 
 import vn.csc.finalproject.ejb.entity.Clazz;
 import vn.csc.finalproject.ejb.entity.Student;
@@ -52,8 +50,7 @@ public class StudentBean implements StudentBeanLocal, StudentBeanRemote {
 	}
 
 	@Override
-	public void updateStudent(int studentId, String name, String email,
-			String address) {
+	public void updateStudent(int studentId, String name, String email, String address) {
 		try {
 			Student student = em.find(Student.class, studentId);
 			student.setAddress(address);
