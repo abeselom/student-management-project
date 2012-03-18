@@ -82,13 +82,6 @@ public class StudentServiceImpl implements StudentService {
 		studentBeanRemote.persistStudent(student);
 		return null;
 	}
-	
-	public static void main(String[] args) {
-		StudentServiceImpl ssi = new StudentServiceImpl();
-		ssi.updateStudent(10, "10", "email", "address10");
-		//ssi.removeStudent(9);
-		System.out.println(ssi.getStudentListByName("student%").size());
-	}
 
 	@Override
 	public void updateStudent(int studentId, String name, String email, String address) {
@@ -107,5 +100,12 @@ public class StudentServiceImpl implements StudentService {
 			studentDTOList.add(studentDTO);
 		}
 		return studentDTOList;
+	}
+	
+	public static void main(String[] args) {
+		StudentServiceImpl ssi = new StudentServiceImpl();
+		ssi.updateStudent(10, "10", "email", "address10");
+		//ssi.removeStudent(9);
+		System.out.println(ssi.getStudentListByName("student%").size());
 	}
 }
