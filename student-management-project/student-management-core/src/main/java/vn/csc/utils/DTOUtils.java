@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import vn.csc.finalproject.dto.ClazzDTO;
+import vn.csc.finalproject.dto.ClazzDetailDTO;
 import vn.csc.finalproject.dto.StudentDTO;
 import vn.csc.finalproject.dto.UserDTO;
 import vn.csc.finalproject.ejb.entity.Clazz;
@@ -73,5 +74,13 @@ public class DTOUtils {
 		student.setEmail(studentDTO.getEmail());
 		//student.setClazzIdList(getClazzIdListOfStudent(student.getClazzDetails()));
 		return student;
-	}	
+	}
+	
+	public ClazzDetailDTO convertClazzDetailToClazzDetailDTO(ClazzDetail clazzDetail) {
+		ClazzDetailDTO clazzDetailDTO = new ClazzDetailDTO();
+		clazzDetailDTO.setClazz_DETAIL_ID(clazzDetail.getClazz_DETAIL_ID());
+		clazzDetailDTO.setClazzDTOId(clazzDetail.getClazz().getClazz_ID());
+		clazzDetailDTO.setStudentDTOId(clazzDetail.getStudent().getStudentId());
+		return clazzDetailDTO;
+	}
 }
