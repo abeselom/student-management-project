@@ -1,5 +1,6 @@
 package vn.csc.finalproject.ejb.entity.clazz;
 
+import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -41,7 +42,7 @@ public class ClassBean implements ClassBeanLocal, ClassBeanRemote {
 		try {
 			return em.merge(clazz);
 		} catch (Exception e) {
-			Sthrow new EJBException(e.getMessage());
+			throw new EJBException(e.getMessage());
 		}
 	}
 
