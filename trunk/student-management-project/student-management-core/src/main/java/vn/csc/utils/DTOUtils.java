@@ -56,4 +56,22 @@ public class DTOUtils {
 		userDTO.setEmail(user.getEmail());
 		return userDTO;
 	}
+	
+	public User convertUserDTOToUser(UserDTO userDTO) {
+		User user = new User();
+		user.setUsername(userDTO.getUsername());
+		user.setPassword(userDTO.getPassword());
+		user.setType(userDTO.getType());
+		user.setEmail(userDTO.getEmail());
+		return user;
+	}
+	
+	public Student convertStudentDTOToStudent(StudentDTO studentDTO) {
+		Student student = new Student();
+		student.setStudentId(studentDTO.getStudentId());
+		student.setName(studentDTO.getName());
+		student.setEmail(studentDTO.getEmail());
+		//student.setClazzIdList(getClazzIdListOfStudent(student.getClazzDetails()));
+		return student;
+	}	
 }
