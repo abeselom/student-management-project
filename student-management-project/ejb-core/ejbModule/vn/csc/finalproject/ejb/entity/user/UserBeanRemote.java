@@ -12,9 +12,7 @@ public interface UserBeanRemote {
 
 	public User persistUser(User user);
 
-	public User mergeUser(User user);
-
-	public void removeUser(User user);
+	public void removeUser(String username);
 
 	public List<User> getUserList();
 
@@ -25,4 +23,6 @@ public interface UserBeanRemote {
 	public boolean userExisted(String username);
 	
 	public User LogIn(String username, String password);
+	
+	public void updateUser(String username, String password, String email, int type);
 }
