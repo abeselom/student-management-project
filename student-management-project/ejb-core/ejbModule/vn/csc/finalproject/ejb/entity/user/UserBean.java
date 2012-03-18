@@ -2,7 +2,10 @@ package vn.csc.finalproject.ejb.entity.user;
 
 import java.util.List;
 
+import javax.ejb.EJBException;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -10,6 +13,7 @@ import javax.persistence.Query;
 import vn.csc.finalproject.ejb.entity.User;
 
 @Stateless(name = "UserBean", mappedName = "user")
+@TransactionManagement(TransactionManagementType.CONTAINER)
 public class UserBean implements UserBeanLocal, UserBeanRemote {
 
 	@PersistenceContext(unitName = "ejb-core")
@@ -31,17 +35,32 @@ public class UserBean implements UserBeanLocal, UserBeanRemote {
 	}
 
 	public User persistUser(User user) {
-		em.persist(user);
+		try {
+			em.persist(user);
+			em.flush();
+		} catch (Exception e) {
+			throw new EJBException(e.getMessage());
+		}
 		return user;
 	}
 
 	public User mergeUser(User user) {
-		return em.merge(user);
+		try {
+			return em.merge(user);
+		} catch (Exception e) {
+			throw new EJBException(e.getMessage());
+		}
 	}
 
 	public void removeUser(User user) {
-		user = em.find(User.class, user.getUsername());
-		em.remove(user);
+		try {
+			user = em.find(User.class, user.getUsername());
+			if (user != null) {
+				em.remove(user);
+			}
+		} catch (Exception e) {
+			throw new EJBException(e.getMessage());
+		}
 	}
 
 	@SuppressWarnings("unchecked")
@@ -78,6 +97,7 @@ public class UserBean implements UserBeanLocal, UserBeanRemote {
 
 	@Override
 	public User LogIn(String username, String password) {
+		// TODO Auto-generated method stub
 		if (!this.userExisted(username)) {
 			User user = this.getUserByName(username);
 			if (user.getPassword().equals(password)) {
@@ -89,6 +109,7 @@ public class UserBean implements UserBeanLocal, UserBeanRemote {
 
 	@Override
 	public boolean userExisted(String username) {
+		// TODO Auto-generated method stub
 		boolean rs = true;
 		if (this.getUserByName(username) == null)
 			rs = false;
