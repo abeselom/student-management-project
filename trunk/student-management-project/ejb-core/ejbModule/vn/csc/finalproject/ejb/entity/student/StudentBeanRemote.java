@@ -14,7 +14,7 @@ public interface StudentBeanRemote {
 
 	public Student persistStudent(Student student);
 
-	public void removeStudent(int studentId);
+	public boolean removeStudent(int studentId);
 	
 	public List<Student> getAllStudent();
 	
