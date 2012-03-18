@@ -2,13 +2,15 @@ package vn.csc.finalproject.ejb.entity.clazz;
 
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-
 import vn.csc.finalproject.ejb.entity.Clazz;
 
 @Stateless(name = "ClassBean", mappedName = "clazz")
+@TransactionManagement(TransactionManagementType.CONTAINER)
 public class ClassBean implements ClassBeanLocal, ClassBeanRemote {
 
 	@PersistenceContext(unitName = "ejb-core")
