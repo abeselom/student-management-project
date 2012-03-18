@@ -66,9 +66,13 @@ public class StudentBean implements StudentBeanLocal, StudentBeanRemote {
 		}
 	}
 
-	public void removeStudent(int studentId) {
+	public boolean removeStudent(int studentId) {
 		Student student = em.find(Student.class, studentId);
-		em.remove(student);
+		if(student != null) {
+			em.remove(student);
+			return true;
+		}
+		return false;
 	}
 
 	@SuppressWarnings("unchecked")
