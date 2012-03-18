@@ -78,7 +78,6 @@ public class UserBean implements UserBeanLocal, UserBeanRemote {
 
 	@Override
 	public User LogIn(String username, String password) {
-		// TODO Auto-generated method stub
 		if (!this.userExisted(username)) {
 			User user = this.getUserByName(username);
 			if (user.getPassword().equals(password)) {
@@ -90,7 +89,6 @@ public class UserBean implements UserBeanLocal, UserBeanRemote {
 
 	@Override
 	public boolean userExisted(String username) {
-		// TODO Auto-generated method stub
 		boolean rs = true;
 		if (this.getUserByName(username) == null)
 			rs = false;
