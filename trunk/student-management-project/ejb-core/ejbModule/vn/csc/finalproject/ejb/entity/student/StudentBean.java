@@ -2,21 +2,30 @@ package vn.csc.finalproject.ejb.entity.student;
 
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.sql.DataSource;
 
 import vn.csc.finalproject.ejb.entity.Clazz;
 import vn.csc.finalproject.ejb.entity.Student;
 
 @Stateless(name = "StudentBean", mappedName = "student")
+@TransactionManagement(TransactionManagementType.CONTAINER)
 public class StudentBean implements StudentBeanLocal, StudentBeanRemote {
 
 	@PersistenceContext(unitName = "ejb-core")
 	private EntityManager em;
-
+	@Resource(mappedName="jdbc/project")
+	DataSource dataSource;
+	
 	public StudentBean() {
 	}
 
@@ -32,9 +41,16 @@ public class StudentBean implements StudentBeanLocal, StudentBeanRemote {
 		return query.getResultList();
 	}
 
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public Student persistStudent(Student student) {
-		em.persist(student);
+		try {
+			em.persist(student);
+			em.flush();
+		} catch (Exception e) {
+			System.err.println(e.getMessage().toString());
+		}
 		return student;
+
 	}
 
 	public Student mergeStudent(Student student) {
@@ -106,9 +122,13 @@ public class StudentBean implements StudentBeanLocal, StudentBeanRemote {
 		return rs;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public boolean studentExited(String name) {
-		// TODO Auto-generated method stub
-		return false;
+	public List<Student> getStudentListByName(String name) {
+		String stringQuery = "SELECT s FROM Student s WHERE s.name LIKE :studentName";
+		Query query = em.createQuery(stringQuery);
+		query.setParameter("studentName", name);
+		List<Student> studentList = (List<Student>)query.getResultList();
+		return studentList;
 	}
 }
