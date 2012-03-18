@@ -11,12 +11,24 @@ import vn.csc.finalproject.ejb.entity.Clazz;
 import vn.csc.finalproject.ejb.entity.Student;
 import vn.csc.finalproject.ejb.entity.student.StudentBeanRemote;
 import vn.csc.utils.ContextUtil;
-import vn.csc.utils.ConvertToDTOUtils;
+import vn.csc.utils.DTOUtils;
 import vn.csc.webapp.services.StudentService;
 
 public class StudentServiceImpl implements StudentService {
 	private StudentBeanRemote studentBeanRemote;
-	protected ConvertToDTOUtils convertService = new ConvertToDTOUtils();
+	protected DTOUtils convertService = new DTOUtils();
+
+	@Override
+	public StudentDTO mergeStudent(StudentDTO studentDTO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void removeStudent(StudentDTO studentDTO) {
+		// TODO Auto-generated method stub
+
+	}
 
 	public StudentServiceImpl() {
 		try {
@@ -53,8 +65,7 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public StudentDTO getStudentById(int studentId) {
 		Student student = studentBeanRemote.getStudentById(studentId);
-		StudentDTO studentDTO = convertService
-				.convertStudentToStudentDTO(student);
+		StudentDTO studentDTO = convertService.convertStudentToStudentDTO(student);
 		return studentDTO;
 	}
 
@@ -69,13 +80,19 @@ public class StudentServiceImpl implements StudentService {
 		return clazzDTOList;
 	}
 
+	@Override
+	public StudentDTO persistStudent(String name, String email, String address) {
+		Student student = new Student();
+		student.setName(name);
+		student.setEmail(email);
+		student.setAddress(address);
+		studentBeanRemote.persistStudent(student);
+		return null;
+	}
+	
 	public static void main(String[] args) {
 		StudentServiceImpl ssi = new StudentServiceImpl();
-		List<ClazzDTO> clazzDTOList = new ArrayList<ClazzDTO>();
-		clazzDTOList = ssi.getClassByStudentId(1);
-		for (ClazzDTO clazzDTO : clazzDTOList) {
-			System.out.println(clazzDTO.getSubject());
-		}
+		System.out.println(ssi.getNumberOfStudents());
+		System.out.println(ssi.persistStudent("name", "email", "address"));
 	}
-
 }
