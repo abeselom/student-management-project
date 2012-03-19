@@ -21,7 +21,7 @@ public class User implements Serializable {
 
 
 	@Id
-	@Column(name="Username")
+	@Column(name="USERNAME")
 	public String getUsername() {
 		return this.username;
 	}
