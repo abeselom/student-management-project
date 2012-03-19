@@ -1,6 +1,7 @@
 package vn.csc.finalproject.ejb.entity.clazz;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
@@ -69,5 +70,19 @@ public class ClassBean implements ClassBeanLocal, ClassBeanRemote {
 		} catch (Exception e) {
 			throw new EJBException(e.getMessage());
 		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Clazz> getClazzList() {
+		String str = "SELECT a FROM Clazz a";
+		Query query = em.createQuery(str);
+		List<Clazz> rs = (List<Clazz>) query.getResultList();
+		return rs;
+	}
+
+	@Override
+	public Clazz getClazzById(int clazzId) {
+		return em.find(Clazz.class, clazzId);
 	}
 }
