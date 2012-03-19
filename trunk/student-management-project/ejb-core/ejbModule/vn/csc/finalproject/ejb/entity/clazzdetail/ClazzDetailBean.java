@@ -13,7 +13,7 @@ import javax.persistence.Query;
 import vn.csc.finalproject.ejb.entity.ClazzDetail;
 import vn.csc.finalproject.ejb.entity.Student;
 
-@Stateless(name = "ClazzDetailBean", mappedName = "clazzDetail")
+@Stateless(name = "ClazzDetailBean", mappedName = "clazzdetail")
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class ClazzDetailBean implements ClazzDetailBeanLocal,
 		ClazzDetailBeanRemote {
