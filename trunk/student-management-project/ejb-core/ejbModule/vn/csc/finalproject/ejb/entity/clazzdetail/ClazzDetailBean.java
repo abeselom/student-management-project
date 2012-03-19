@@ -14,7 +14,7 @@ import vn.csc.finalproject.ejb.entity.Clazz;
 import vn.csc.finalproject.ejb.entity.ClazzDetail;
 import vn.csc.finalproject.ejb.entity.Student;
 
-@Stateless(name = "ClazzDetailBean", mappedName = "clazzdetail")
+@Stateless(name = "ClazzDetailBean", mappedName = "clazzDetail")
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class ClazzDetailBean implements ClazzDetailBeanLocal,
 		ClazzDetailBeanRemote {
