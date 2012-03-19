@@ -1,6 +1,8 @@
 package vn.csc.webapp.serviceImpl;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.naming.NamingException;
 
@@ -44,6 +46,29 @@ public class ClassServiceImpl implements ClassService {
 	@Override
 	public void removeClazz(int clazzId) {
 		classBeanRemote.removeClazz(clazzId);
+	}
+
+	@Override
+	public List<ClazzDTO> getClazzList() {
+		List<Clazz> classList = new ArrayList<Clazz>();
+		classList = classBeanRemote.getClazzList();
+		List<ClazzDTO> classDTOList = new ArrayList<ClazzDTO>();
+		for (Clazz clazz : classList) {
+			ClazzDTO clazzDTO = new ClazzDTO();
+			clazzDTO = convertService.convertClazzToClazzDTO(clazz);
+			classDTOList.add(clazzDTO);
+		}
+		return classDTOList;
+	}
+	
+	public static void main(String[] args) {
+		ClassServiceImpl ssi = new ClassServiceImpl();
+		System.out.println(ssi.getClazzList().get(0).getSubject());
+	}
+
+	@Override
+	public ClazzDTO getClazzById(int clazzId) {
+		return convertService.convertClazzToClazzDTO(classBeanRemote.getClazzById(clazzId));
 	}
 
 }
