@@ -44,7 +44,6 @@ public class UserBean implements UserBeanLocal, UserBeanRemote {
 		} catch (Exception e) {
 			throw new EJBException(e.getMessage());
 		}
-		em.flush();
 		return user;
 	}
 	
