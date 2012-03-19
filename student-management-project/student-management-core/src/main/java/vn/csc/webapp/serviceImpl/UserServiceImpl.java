@@ -89,7 +89,7 @@ public class UserServiceImpl implements UserService {
 		System.out.println(hashPassword);
 		User user = userBeanRemote.LogIn(username, hashPassword);
 		System.out.println(user);
-		return null;
+		return convertService.convertUserToUserDTO(user);
 	}
 	
 	public static void main(String[] args) {
