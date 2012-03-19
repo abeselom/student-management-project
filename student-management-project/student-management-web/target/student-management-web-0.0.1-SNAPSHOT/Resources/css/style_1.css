@@ -1,0 +1,38 @@
+body
+{
+	  margin: 0 auto;
+        padding: 0;
+        align:center
+
+}
+.logo
+{
+	 width:400px;
+	 margin-top:100px;
+}
+.logo_1
+{
+	background:url("../images/logo_1.png") no-repeat;
+	height:226px; 
+}
+.logo_2
+{
+	margin:100px 0px 0px 0px ;
+	padding:0px 0px 0px 50px ;
+	 
+}
+.text
+{
+	
+	background: url("../images/bg_textbox.png") no-repeat scroll 0 0 transparent;
+  	height: 39px;
+    width: 268px;
+}
+.text_box
+{
+	border:none;
+	margin-top: 11px; 
+	margin-left: 10px; 
+	width: 246px;
+	  
+}
