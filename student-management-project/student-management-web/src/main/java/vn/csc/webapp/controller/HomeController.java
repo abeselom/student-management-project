@@ -24,6 +24,6 @@ public class HomeController {
 		studentDTOList = studentService.getStudentList();
 		map.put("studentList", studentDTOList);
 		map.put("number", studentService.getNumberOfStudents());
-		return "home";
+		return "index";
 	}
 }

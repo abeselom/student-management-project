@@ -112,15 +112,7 @@
 				<!-- div box1 -->
 				<div style="clear: both"></div>
 				<!-- div box1 -->
-				<div class="box_5">
-					<div class="box_body_content">
-						<div class="box_body_content_1">Student_ID:</div>
-						<div class="box_body_content_2">
-							<div class="div_text_box">
-								<input type="text" class="text_box" id="staffid" name="staffid" />
-							</div>
-						</div>						
-					</div>						
+				<div class="box_5">						
 				</div>
 				<!-- div box1 -->
 				<div style="clear: both"></div>			
