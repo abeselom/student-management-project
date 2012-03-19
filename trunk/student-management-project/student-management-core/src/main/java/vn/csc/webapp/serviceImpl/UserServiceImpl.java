@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void updateUser(String username, String password, String email,
 			int type) {
-		userBeanRemote.updateUser(username, password, email, type);
+		userBeanRemote.updateUser(username, hashCodeService.hashMd5(password), email, type);
 	}
 
 	@Override
