@@ -18,7 +18,9 @@ public class ClassServiceImpl implements ClassService {
 	public ClassServiceImpl() {
 		try {
 			ContextUtil contextUtil = new ContextUtil();
-			this.classBeanRemote = (ClassBeanRemote) contextUtil.getInitialContext().lookup("clazz#vn.csc.finalproject.ejb.entity.clazz.ClassBeanRemote");
+			this.classBeanRemote = (ClassBeanRemote) contextUtil
+					.getInitialContext()
+					.lookup("clazz#vn.csc.finalproject.ejb.entity.clazz.ClassBeanRemote");
 		} catch (NamingException e) {
 			this.classBeanRemote = null;
 			System.err.println(e.getMessage().toString());
