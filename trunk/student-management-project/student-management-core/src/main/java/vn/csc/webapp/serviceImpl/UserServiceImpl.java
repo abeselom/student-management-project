@@ -5,17 +5,17 @@ import java.util.List;
 
 import javax.naming.NamingException;
 
-import org.apache.commons.codec.digest.DigestUtils;
-
 import vn.csc.finalproject.dto.UserDTO;
 import vn.csc.finalproject.ejb.entity.User;
 import vn.csc.finalproject.ejb.entity.user.UserBeanRemote;
 import vn.csc.utils.ContextUtil;
 import vn.csc.utils.DTOUtils;
+import vn.csc.utils.HashPasswordUtil;
 import vn.csc.webapp.services.UserService;
 
 public class UserServiceImpl implements UserService {
 	private UserBeanRemote userBeanRemote;
+	protected HashPasswordUtil hashCodeService = new HashPasswordUtil();
 	protected DTOUtils convertService = new DTOUtils();
 
 	public UserServiceImpl() {
@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
 		User user = new User();
 		user.setUsername(username);
 		user.setEmail(email);
-		user.setPassword(DigestUtils.md5Hex(password));
+		user.setPassword(hashCodeService.hashMd5(password));
 		user.setType(type);
 		userBeanRemote.persistUser(user);
 		return convertService.convertUserToUserDTO(user);
@@ -85,10 +85,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserDTO LogIn(String username, String password) {
-		String hashPassword = DigestUtils.md5Hex(password);
-		System.out.println(hashPassword);
+		String hashPassword = hashCodeService.hashMd5(password);
 		User user = userBeanRemote.LogIn(username, hashPassword);
-		System.out.println(user);
 		return convertService.convertUserToUserDTO(user);
 	}
 	
@@ -98,8 +96,8 @@ public class UserServiceImpl implements UserService {
 		System.out.println(ssi.userExisted("admin"));
 		System.out.println(ssi.userExisted("abc"));
 		System.out.println(ssi.getUserList().get(1).getEmail());
-		//System.out.println(ssi.persistUser("tu1", "tu", "tu@yahoo.com", 1));
-		System.out.println(ssi.LogIn("tu1", "tu"));
+		//System.out.println(ssi.persistUser("tu6", "tu", "tu@yahoo.com", 1));
+		System.out.println(ssi.LogIn("tu7", "123"));
 		//ssi.removeStudent(9);
 		//System.out.println(ssi.getStudentListByName("student%").size());
 	}
