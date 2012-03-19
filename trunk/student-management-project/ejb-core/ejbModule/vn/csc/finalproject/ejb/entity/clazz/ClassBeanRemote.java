@@ -1,6 +1,7 @@
 package vn.csc.finalproject.ejb.entity.clazz;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.ejb.Remote;
 
@@ -16,4 +17,8 @@ public interface ClassBeanRemote {
 	public void updateClazz(int clazzId, Date dateTime, String subject);
 
 	public void removeClazz(int clazzId);
+	
+	public List<Clazz> getClazzList();
+	
+	public Clazz getClazzById(int clazzId);
 }
