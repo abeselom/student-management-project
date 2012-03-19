@@ -18,4 +18,6 @@ public interface ClazzDetailBeanRemote {
 	public void removeClazzDetail(ClazzDetail clazzDetail);
 
 	public List<Student> GetStudentByClass(int ClazzID);
+
+	ClazzDetail addClazzDetail(int classID, int studentID);
 }

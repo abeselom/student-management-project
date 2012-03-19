@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import vn.csc.finalproject.ejb.entity.Clazz;
 import vn.csc.finalproject.ejb.entity.ClazzDetail;
 import vn.csc.finalproject.ejb.entity.Student;
 
@@ -48,7 +49,8 @@ public class ClazzDetailBean implements ClazzDetailBeanLocal,
 
 	public ClazzDetail mergeClazzDetail(ClazzDetail clazzDetail) {
 		try {
-			ClazzDetail cd = em.find(ClazzDetail.class, clazzDetail.getClazz_DETAIL_ID());
+			ClazzDetail cd = em.find(ClazzDetail.class,
+					clazzDetail.getClazz_DETAIL_ID());
 			cd.setClazz(clazzDetail.getClazz());
 			cd.setClazz_DETAIL_ID(clazzDetail.getClazz_DETAIL_ID());
 			cd.setStudent(clazzDetail.getStudent());
@@ -83,5 +85,21 @@ public class ClazzDetailBean implements ClazzDetailBeanLocal,
 		} catch (Exception e) {
 			throw new EJBException(e.getMessage());
 		}
+	}
+
+	@Override
+	public ClazzDetail addClazzDetail(int classID, int studentID) {
+		// TODO Auto-generated method stub
+		Clazz clazz = em.find(Clazz.class, classID);
+		Student student = em.find(Student.class, studentID);
+
+		if ((clazz != null) && (student != null)) {
+			ClazzDetail cd = new ClazzDetail();
+			cd.setClazz(clazz);
+			cd.setStudent(student);
+
+			return this.persistClazzDetail(cd);
+		}
+		return null;
 	}
 }
