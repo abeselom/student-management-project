@@ -34,7 +34,7 @@ public class UserBean implements UserBeanLocal, UserBeanRemote {
 		return query.getResultList();
 	}
 
-	//@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	// @TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public User persistUser(User user) {
 		try {
 			em.persist(user);
@@ -44,7 +44,7 @@ public class UserBean implements UserBeanLocal, UserBeanRemote {
 		}
 		return user;
 	}
-	
+
 	public void removeUser(String username) {
 		try {
 			User user = em.find(User.class, username);
@@ -89,8 +89,8 @@ public class UserBean implements UserBeanLocal, UserBeanRemote {
 	@Override
 	public User LogIn(String username, String password) {
 		// TODO Auto-generated method stub
-		if (!this.userExisted(username)) {
-			User user = this.getUserByName(username);
+		User user = this.getUserByName(username);
+		if (user != null) {
 			if (user.getPassword().equals(password)) {
 				return user;
 			}
@@ -106,8 +106,9 @@ public class UserBean implements UserBeanLocal, UserBeanRemote {
 			rs = false;
 		return rs;
 	}
-	
-	public void updateUser(String username, String password, String email, int type) {
+
+	public void updateUser(String username, String password, String email,
+			int type) {
 		User user = em.find(User.class, username);
 		user.setEmail(email);
 		user.setPassword(password);
