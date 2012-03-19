@@ -36,7 +36,7 @@ public class UserBean implements UserBeanLocal, UserBeanRemote {
 		return query.getResultList();
 	}
 
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	//@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public User persistUser(User user) {
 		try {
 			em.persist(user);
