@@ -12,7 +12,7 @@
 	<c:url var="addUrl" value="/user/edit" />
 	<h3>Insert User Project's Information</h3>
 	
-	<form action="${addUrl}" method="post" name="addUserForm" onsubmit="">
+	<form action="${addUrl}" method="post" name="updateUserForm" onsubmit="">
 		<table>
 			<tr>
 				<td>Username</td>
