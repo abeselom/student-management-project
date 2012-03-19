@@ -74,8 +74,8 @@ public class ClazzDetailBean implements ClazzDetailBeanLocal,
 	@Override
 	public List<Student> GetStudentByClass(int ClazzID) {
 		try {
-			String str = "SELECT DISTINCT stu FROM Student stu WHERE stu.student_id IN "
-					+ "(SELECT detail.student_id FROM ClazzDetail detail WHERE detail.clazz_id = :id)";
+			String str = "SELECT DISTINCT stu FROM Student stu WHERE stu.studentId IN "
+					+ "(SELECT detail.student.studentId FROM ClazzDetail detail WHERE detail.clazz.clazz_ID = :id)";
 			Query query = em.createQuery(str);
 			query.setParameter("id", ClazzID);
 			List<Student> rs = (List<Student>) query.getResultList();
