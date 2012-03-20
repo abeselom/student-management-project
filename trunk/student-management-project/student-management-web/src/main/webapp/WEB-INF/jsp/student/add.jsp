@@ -5,27 +5,27 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Add Student</title>
+<title>Add User</title>
 </head>
 <body>
-	<h1>Add Student</h1>
-	<c:url var="addUrl" value="/student-management-web/student/add" />
-	<h3>Insert User Project's Information</h3>
+	<h1>Add User</h1>
+	<c:url var="addUrl" value="/student/add" />
+	<h3>Insert Student's Information</h3>
 	
 	<form action="${addUrl}" method="post" name="addStudentForm" onsubmit="">
 		<table>
 			<tr>
-				<td>FullName:</td>
+				<td>Student Name</td>
 				<td><input name="name" type="text"/></td>
 			</tr>
 			<tr>
-				<td>Address:</td>
-				<td><input type="text" name="Address"/></td>
-			</tr>			
-			<tr>
 				<td>Email</td>
-				<td><input name="email" type="text"/></td>
-			</tr>			
+				<td><input type="text" name="email"/></td>
+			</tr>
+			<tr>
+				<td>Address</td>
+				<td><input type="text" name="address"/></td>
+			</tr>
 			<tr>
 				<td colspan="2" align="center">
 					<input type="submit" name="submit" value="Submit"/>

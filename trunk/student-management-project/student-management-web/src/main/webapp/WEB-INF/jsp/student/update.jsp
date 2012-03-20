@@ -5,27 +5,28 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Edit Student</title>
+<title>Edit user</title>
 </head>
 <body>
-	<h1>Edit Student</h1>
+	<h1>Edit user</h1>
 	<c:url var="addUrl" value="/student/edit" />
-	<h3>Insert Student Project's Information</h3>
+	<h3>Insert User Project's Information</h3>
 	
-	<form action="${addUrl}" method="post" name="updateUserForm" onsubmit="">
+	<form action="${addUrl}" method="post" name="updateStudentForm" onsubmit="">
+		<input name="studentId" type="hidden" value="${student.studentId }"/>
 		<table>
 			<tr>
-				<td>FullName:</td>
-				<td><input name="userName" type="text" value="${student.name }"/></td>
+				<td>Student Name</td>
+				<td><input name="name" type="text" value="${student.name }"/></td>
 			</tr>
 			<tr>
-				<td>Email:</td>
+				<td>Email</td>
 				<td><input type="text" name="email" value="${student.email }"/></td>
 			</tr>
 			<tr>
-				<td>Address:</td>
-				<td><input name="email" type="text" value="${student.address }"/></td>
-			</tr>			
+				<td>Address</td>
+				<td><input name="address" type="text" value="${student.address }"/></td>
+			</tr>
 			<tr>
 				<td colspan="2" align="center">
 					<input type="submit" name="submit" value="Update"/>
