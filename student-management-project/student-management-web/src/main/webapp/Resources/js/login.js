@@ -22,7 +22,7 @@ function LoginCheck() {
                 var sendData = "action=login&un=" + userName + "&pw=" + passWord;                       
                 $.ajax({
                     type : "POST",
-                    url : 'login.htm',     //'/login.htm', 
+                    url : '/',     //'/login.htm', 
                     data : sendData,
                     success : function(msg) {
                         if (msg=="access") {
