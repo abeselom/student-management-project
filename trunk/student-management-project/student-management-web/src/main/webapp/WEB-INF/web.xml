@@ -27,4 +27,21 @@
 		<servlet-name>spring</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+
+	<filter>
+		<filter-name>UserLoginFilter</filter-name>
+		<filter-class>vn.csc.webapp.filter.UserLoginFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>UserLoginFilter</filter-name>
+		<url-pattern>/student/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>UserLoginFilter</filter-name>
+		<url-pattern>/user/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>UserLoginFilter</filter-name>
+		<url-pattern>/classes/*</url-pattern>
+	</filter-mapping>
 </web-app>

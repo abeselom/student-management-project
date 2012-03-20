@@ -20,8 +20,12 @@ public class HomeController {
 	private UserService userService;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String index() {
-		return "index";
+	public String index(HttpServletRequest request) {
+		HttpSession session = request.getSession(true);
+		String username = (String) session.getAttribute("userName");
+		if(username == null || "".equals(username))
+			return "index";
+		return "redirect:/home";
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.POST)

@@ -93,5 +93,6 @@
 			</tr>
 		</table>
 	</form>
+	<a href="/student-management-web/student/">Back</a>
 </body>
 </html>
