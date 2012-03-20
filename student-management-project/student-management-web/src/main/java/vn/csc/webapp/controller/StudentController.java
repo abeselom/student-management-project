@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import vn.csc.finalproject.dto.ClazzDTO;
+import vn.csc.finalproject.dto.ClazzDetailDTO;
 import vn.csc.finalproject.dto.StudentDTO;
 import vn.csc.webapp.services.ClassDetailService;
 import vn.csc.webapp.services.ClassService;
@@ -66,6 +67,7 @@ public class StudentController {
 		StudentDTO studentDTO = studentService.getStudentById(studentId);
 		map.put("student", studentDTO);
 		map.put("classList", classService.getClazzList());
+		map.put("enrolledClassList", studentService.getClassByStudentId(studentId));
 		return "student/update";
 	}
 
@@ -79,7 +81,9 @@ public class StudentController {
 			String email = request.getParameter("email");
 			String address = request.getParameter("address");
 			studentService.updateStudent(studentID, name, email, address);
-			classDetailService.addClazzDetail(classID, studentID);
+			if(classID != 0) {
+				classDetailService.addClazzDetail(classID, studentID);
+			}
 		} catch (Exception e) {
 			System.err.println(e.getMessage().toString());
 			viewModel.addAttribute("error", "Can not edit student!");
@@ -101,6 +105,15 @@ public class StudentController {
 		List<ClazzDTO> classDTOList = studentService.getClassByStudentId(studentId);
 		map.put("student", studentDTO);
 		map.put("classList", classDTOList);
+		return "student/detail";
+	}
+	
+	@RequestMapping(value = "/unenroll")
+	public String unenrollStudent(HttpServletRequest request, Map<String, Object> map) {
+		int studentId = Integer.parseInt(request.getParameter("studentId"));
+		int clazzId = Integer.parseInt(request.getParameter("classId"));
+		ClazzDetailDTO classDetailDTO = classDetailService.searchClassDetailbyClassAndStudent(clazzId, studentId);
+		classDetailService.removeClazzDetail(classDetailDTO.getClazz_DETAIL_ID());
 		return "student/detail";
 	}
 }
