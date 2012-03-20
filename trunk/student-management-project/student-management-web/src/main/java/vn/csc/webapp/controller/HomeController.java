@@ -52,4 +52,16 @@ public class HomeController {
 		}
 		return fileName;
 	}
+	
+	@RequestMapping(value = "/logout")
+	public String logout(HttpServletRequest request, Map<String, Object> map) {
+		try {
+			HttpSession session = request.getSession(true);
+			session.setAttribute("userName", "");
+			session.setAttribute("type", "");
+		} catch (Exception e) {
+			System.err.println(e.getMessage().toString());
+		}
+		return "redirect:/";
+	}
 }
