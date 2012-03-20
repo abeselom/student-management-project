@@ -6,6 +6,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Add User</title>
+<style type="text/css">
+table, td, th
+{
+border:0px solid green;
+}
+td
+{
+font-size: 20px;
+
+}
+th
+{
+background-color:green;
+color:white;
+}
+</style>
 <script type="text/javascript">
 	function Validate() {
 		var rs = new Boolean();
@@ -61,23 +77,23 @@
 			<tr>
 				<td>Username</td>
 				<td><input name="userName" id="userName" type="text" /></td>
-				<td><p id="usernameFail"></p></td>
+				<td style="color: red" id="usernameFail"></td>
 			</tr>
 			<tr>
 				<td>Password</td>
 				<td><input type="password" id="password" name="password" /></td>
-				<td><p id="passwordFail"></p></td>
+				<td style="color: red" id="passwordFail"></td>
 			</tr>
 			<tr>
 				<td>Retype password</td>
 				<td><input type="password" id="retypepassword"
 					name="retypepassword" /></td>
-				<td><p id="retypepasswordFail"></td>
+				<td style="color: red" id="retypepasswordFail"></td>
 			</tr>
 			<tr>
 				<td>Email</td>
 				<td><input name="email" id="email" type="text" /></td>
-				<td><p id="emailFail"></p></td>
+				<td style="color: red" id="emailFail"></td>
 			</tr>
 			<tr>
 				<td>Type</td>

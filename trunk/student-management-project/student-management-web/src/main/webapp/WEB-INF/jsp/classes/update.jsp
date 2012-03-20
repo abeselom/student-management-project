@@ -5,6 +5,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<style type="text/css">
+table, td, th
+{
+border:0px solid green;
+}
+td
+{
+font-size: 20px;
+
+}
+th
+{
+background-color:green;
+color:white;
+}
+</style>
 <title>Edit user</title>
 <script type="text/javascript">
 	// check date
