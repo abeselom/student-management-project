@@ -43,9 +43,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void updateUser(String username, String password, String email,
-			int type) {
-		userBeanRemote.updateUser(username, hashCodeService.hashMd5(password), email, type);
+	public void updateUser(String username, String email, int type) {
+		userBeanRemote.updateUser(username, email, type);
 	}
 
 	@Override
@@ -84,10 +83,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserDTO LogIn(String username, String password) {
+	public boolean LogIn(String username, String password) {
 		String hashPassword = hashCodeService.hashMd5(password);
-		User user = userBeanRemote.LogIn(username, hashPassword);
-		return convertService.convertUserToUserDTO(user);
+		return userBeanRemote.LogIn(username, hashPassword);
 	}
 	
 	public static void main(String[] args) {
@@ -97,8 +95,14 @@ public class UserServiceImpl implements UserService {
 		System.out.println(ssi.userExisted("abc"));
 		System.out.println(ssi.getUserList().get(1).getEmail());
 		//System.out.println(ssi.persistUser("tu6", "tu", "tu@yahoo.com", 1));
-		System.out.println(ssi.LogIn("tu7", "123"));
+		ssi.changePassword("teacher", "123456");
 		//ssi.removeStudent(9);
 		//System.out.println(ssi.getStudentListByName("student%").size());
+	}
+
+	@Override
+	public void changePassword(String username, String password) {
+		String hashPassword = hashCodeService.hashMd5(password);
+		userBeanRemote.changePassword(username, hashPassword);
 	}
 }
