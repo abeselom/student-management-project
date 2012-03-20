@@ -102,6 +102,7 @@ public class ClazzDetailBean implements ClazzDetailBeanLocal,
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public ClazzDetail searchClassDetailbyClassAndStudent(int classID, int studentID) {
 		try {
