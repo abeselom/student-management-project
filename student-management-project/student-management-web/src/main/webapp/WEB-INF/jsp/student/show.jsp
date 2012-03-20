@@ -18,7 +18,7 @@ table tr {
 }
 
 table tr:hover {
-	background-color: #f7f7f7;
+	background-color: 	#00FF00;
 }
 
 table td {

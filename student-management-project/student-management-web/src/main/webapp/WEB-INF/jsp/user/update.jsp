@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Edit user</title>
+
 <script type="text/javascript">
 	function Validate() {
 		var rs = new Boolean();
@@ -54,20 +55,21 @@
 			<tr>
 				<td>Username</td>
 				<td><input name="userName" id="userName" type="text"
-					value="${user.username }" />
-					<p id="usernameFail"></p></td>
+					value="${user.username }" /></td>
+				<td id="usernameFail" style="color: red"></td>
 			</tr>
 			<tr>
 				<td>Password</td>
 				<td><input type="password" id="password" name="password"
-					value="${user.password }" />
-					<p id="passwordFail"></p></td>
+					value="${user.password }" /></td>
+				<td id="passwordFail" style="color: red"></td>
 			</tr>
 			<tr>
 				<td>Email</td>
 				<td><input name="email" type="text" id="email"
 					value="${user.email }" />
-					<p id="emailFail"></p></td>
+				</td>
+					<td id="emailFail" style="color: red"></td>
 			</tr>
 			<tr>
 				<td>Type</td>

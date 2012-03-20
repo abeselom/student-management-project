@@ -6,6 +6,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Add Class</title>
+<style type="text/css">
+table, td, th
+{
+border:0px solid green;
+}
+td
+{
+font-size: 20px;
+
+}
+th
+{
+background-color:green;
+color:white;
+}
+</style>
 <script type="text/javascript">
 	// check date
 	var dtCh = "/";
@@ -141,12 +157,12 @@
 			<tr>
 				<td>Date:</td>
 				<td><input name="date" id="date" type="text" /></td>
-				<td><p id="dateFail"></p></td>
+				<td id="dateFail"></td>
 			</tr>
 			<tr>
 				<td>Subject</td>
 				<td><input type="text" name="subject" id="subject" /></td>
-				<td><p id="subjectFail"></p></td>
+				<td  id="subjectFail"></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center"><input type="submit"

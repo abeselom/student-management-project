@@ -6,6 +6,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Edit user</title>
+<style type="text/css">
+table, td, th
+{
+border:0px solid green;
+}
+td
+{
+font-size: 20px;
+
+}
+th
+{
+background-color:green;
+color:white;
+}
+</style>
 <script type="text/javascript">
 	function Validate() {
 		var rs = new Boolean();

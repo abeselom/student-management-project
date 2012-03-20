@@ -6,6 +6,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Add User</title>
+<style type="text/css">
+table, td, th
+{
+border:0px solid green;
+}
+td
+{
+font-size: 20px;
+
+}
+th
+{
+background-color:green;
+color:white;
+}
+</style>
 <script type="text/javascript">
 	function Validate() {
 		var rs = new Boolean();
@@ -51,17 +67,18 @@
 			<tr>
 				<td>Student Name</td>
 				<td><input name="name" id="name" type="text" /></td>
-				<td><p id=nameFail></p></td>
+				<td id="nameFail" style="color: red"></td>
 			</tr>
 			<tr>
 				<td>Email</td>
 				<td><input type="text" name="email" id="email" /></td>
-				<td><p id=emailFail></p></td>
+
+				<td id="emailFail" style="color: red"></td>
 			</tr>
 			<tr>
 				<td>Address</td>
-				<td><input type="text" name="address" id="address" /></td>
-				<td><p id=addressFail></p></td>
+				<td><input type="text" name="address" id="address" /></td>				
+				<td  id="addressFail" style="color: red"></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center"><input type="submit"
