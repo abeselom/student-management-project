@@ -28,6 +28,17 @@
 				<td><input name="address" type="text" value="${student.address }"/></td>
 			</tr>
 			<tr>
+				<td>Class</td>
+				<td>
+					<select name="classId">
+						<option>Choose...</option>
+						<c:forEach items="${classList}" var="classes">
+							<option value="${classes.clazz_ID}">${classes.subject}</option>
+						</c:forEach>
+					</select>
+				</td>
+			</tr>
+			<tr>
 				<td colspan="2" align="center">
 					<input type="submit" name="submit" value="Update"/>
 				</td>
