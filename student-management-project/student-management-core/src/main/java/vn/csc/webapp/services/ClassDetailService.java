@@ -16,4 +16,6 @@ public interface ClassDetailService {
 	public List<StudentDTO> GetStudentByClass(int clazzID);
 	
 	public ClazzDetailDTO addClazzDetail(int classID, int studentID);
+	
+	public ClazzDetailDTO searchClassDetailbyClassAndStudent(int classID, int studentID);
 }
