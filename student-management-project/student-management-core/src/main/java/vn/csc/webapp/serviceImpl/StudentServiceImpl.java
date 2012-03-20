@@ -74,13 +74,12 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
-	public StudentDTO persistStudent(String name, String email, String address) {
+	public void persistStudent(String name, String email, String address) {
 		Student student = new Student();
 		student.setName(name);
 		student.setEmail(email);
 		student.setAddress(address);
 		studentBeanRemote.persistStudent(student);
-		return null;
 	}
 
 	@Override
@@ -104,8 +103,6 @@ public class StudentServiceImpl implements StudentService {
 	
 	public static void main(String[] args) {
 		StudentServiceImpl ssi = new StudentServiceImpl();
-		ssi.updateStudent(10, "10", "email", "address10");
 		//ssi.removeStudent(9);
-		System.out.println(ssi.getStudentListByName("student%").size());
 	}
 }

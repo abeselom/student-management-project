@@ -45,6 +45,7 @@ public class DTOUtils {
 		studentDTO.setStudentId(student.getStudentId());
 		studentDTO.setName(student.getName());
 		studentDTO.setEmail(student.getEmail());
+		studentDTO.setAddress(student.getAddress());
 		studentDTO.setClazzIdList(getClazzIdListOfStudent(student.getClazzDetails()));
 		return studentDTO;
 	}

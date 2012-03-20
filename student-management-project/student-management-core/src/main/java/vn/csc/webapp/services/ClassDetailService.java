@@ -14,4 +14,6 @@ public interface ClassDetailService {
 	public void removeClazzDetail(ClazzDetail clazzDetail);
 
 	public List<StudentDTO> GetStudentByClass(int clazzID);
+	
+	public ClazzDetailDTO addClazzDetail(int classID, int studentID);
 }
