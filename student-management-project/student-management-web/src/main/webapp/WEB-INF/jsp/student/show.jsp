@@ -67,5 +67,6 @@ a:link, a:visited, a:active, a:hover
 		</tbody>
 	</table>
 	<a href="/student-management-web/student/add">Add</a>
+	<a href="/student-management-web/">Back</a>
 </body>
 </html>
