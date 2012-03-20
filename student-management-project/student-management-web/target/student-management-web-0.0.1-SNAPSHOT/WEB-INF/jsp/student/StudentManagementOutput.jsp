@@ -15,30 +15,25 @@
 <display:table uid="student" name="sessionScope.userList" defaultsort="1"
 	defaultorder="ascending" pagesize="10" requestURI="" export="true"
 	sort="list">
-	<display:column property="studentId" sortable="true" title=" ID"
+	<display:column property="name" sortable="true" title="Student FullName"
 		maxLength="25">
 	</display:column>
-	<display:column property="name" sortable="true" title=" FullName"
-		maxLength="25">
-	</display:column>
-	<display:column property="address" sortable="true" title=" Address"
+	<display:column property="address" sortable="true" title="Student Address"
 		maxLength="25" headerClass="sortable">
 
 	</display:column>
-	<display:column property="email" sortable="true" title="Email "
+	<display:column property="email" sortable="true" title="Email Address"
 		maxLength="25" headerClass="sortable" />	
 	<display:column>	
-		<a href="/student-management-web/student/edit?studentId=${student.studentId}" >Edit</a>
-	</display:column>
-	<display:column>	
-		<a href="/student-management-web/student/delete?studentId=${student.studentId}" >Delete</a>
+		<a href="/student-management-web/student/edit?username=${student.name}" >Edit</a>
 	</display:column>
 	<display:setProperty name="basic.empty.showtable" value="true" />
 	<display:setProperty name="paging.banner.group_size" value="10" />
 	<display:setProperty name="paging.banner.item_name" value="user" />
 	<display:setProperty name="paging.banner.item_names" value="users" />
 	<display:setProperty name="paging.banner.item_names" value="users" />
+
+
 </display:table>
-<a href="/student-management-web/student/add">Add</a>
 </form>
 </body>
