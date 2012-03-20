@@ -5,10 +5,35 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Show Class information</title>
+<style type="text/css">
+table th {
+	text-align: left;
+	padding: 8px;
+	border-bottom: solid thin #cccccc;
+	color: #999999;
+}
+
+table tr {
+	text-align: left;
+}
+
+table tr:hover {
+	background-color: #f7f7f7;
+}
+
+table td {
+	padding: 10px;
+}
+
+a:link, a:visited, a:active, a:hover
+{
+    color: #e2004a; text-decoration: none; font-weight: normal;
+}
+</style>
 </head>
 <body>
 	<h1>Show class information</h1>
-	<table border="1" cellpadding="0" cellspacing="0">
+	<table border="0" cellpadding="0" cellspacing="0">
 		<c:choose>
 			<c:when test="${!empty classesList }">
 				<thead>

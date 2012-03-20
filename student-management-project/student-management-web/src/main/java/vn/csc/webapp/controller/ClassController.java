@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import vn.csc.finalproject.dto.ClazzDTO;
+import vn.csc.finalproject.dto.ClazzDetailDTO;
 import vn.csc.finalproject.dto.StudentDTO;
 import vn.csc.webapp.services.ClassDetailService;
 import vn.csc.webapp.services.ClassService;
@@ -96,5 +97,14 @@ public class ClassController {
 		map.put("studentList", studentDTOList);
 		map.put("number", studentDTOList.size());
 		return "classes/detail";
+	}
+	
+	@RequestMapping(value = "/unenroll")
+	public String unenrollStudent(HttpServletRequest request, Map<String, Object> map) {
+		int studentId = Integer.parseInt(request.getParameter("studentId"));
+		int clazzId = Integer.parseInt(request.getParameter("classId"));
+		ClazzDetailDTO classDetailDTO = classDetailService.searchClassDetailbyClassAndStudent(clazzId, studentId);
+		classDetailService.removeClazzDetail(classDetailDTO.getClazz_DETAIL_ID());
+		return "redirect:/classes/detail?classId=" + clazzId;
 	}
 }
