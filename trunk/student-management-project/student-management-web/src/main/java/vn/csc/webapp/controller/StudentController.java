@@ -114,6 +114,6 @@ public class StudentController {
 		int clazzId = Integer.parseInt(request.getParameter("classId"));
 		ClazzDetailDTO classDetailDTO = classDetailService.searchClassDetailbyClassAndStudent(clazzId, studentId);
 		classDetailService.removeClazzDetail(classDetailDTO.getClazz_DETAIL_ID());
-		return "student/detail";
+		return "redirect:/student/detail?studentId=" + studentId;
 	}
 }
