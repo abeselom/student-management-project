@@ -18,6 +18,7 @@
 						<th>Subject</th>
 						<th></th>
 						<th></th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -27,8 +28,8 @@
 							<td>${classes.daytime}</td>
 							<td>${classes.subject}</td>
 							<td><a href="/student-management-web/classes/edit?classId=${classes.clazz_ID}">Edit</a></td>
-							<td><a href="/student-management-web/classes/delete?classId=${classes.clazz_ID}">Delete</a>
-							</td>
+							<td><a href="/student-management-web/classes/delete?classId=${classes.clazz_ID}">Delete</a></td>
+							<td><a href="/student-management-web/classes/detail?classId=${classes.clazz_ID}">Detail</a></td>
 						</tr>
 					</c:forEach>
 			</c:when>
