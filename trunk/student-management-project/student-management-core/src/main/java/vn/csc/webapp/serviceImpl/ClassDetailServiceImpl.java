@@ -63,4 +63,11 @@ public class ClassDetailServiceImpl implements ClassDetailService {
 		ClazzDetailDTO classDetailDTO = convertService.convertClazzDetailToClazzDetailDTO(classDetail);
 		return classDetailDTO;
 	}
+
+	@Override
+	public ClazzDetailDTO searchClassDetailbyClassAndStudent(int classID, int studentID) {
+		ClazzDetail clazzDetail = classDetailBeanRemote.searchClassDetailbyClassAndStudent(classID, studentID);
+		ClazzDetailDTO clazzDetailDTO = convertService.convertClazzDetailToClazzDetailDTO(clazzDetail);
+		return clazzDetailDTO;
+	}
 }
