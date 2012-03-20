@@ -7,7 +7,7 @@ import vn.csc.finalproject.dto.UserDTO;
 public interface UserService {
 	public UserDTO persistUser(String username, String password, String email, int type);
 
-	public void updateUser(String username, String password, String email, int type);
+	public void updateUser(String username, String email, int type);
 
 	public void removeUser(String username);
 
@@ -19,5 +19,7 @@ public interface UserService {
 
 	public boolean userExisted(String username);
 
-	public UserDTO LogIn(String username, String password);
+	public boolean LogIn(String username, String password);
+	
+	public void changePassword(String username, String password);
 }
