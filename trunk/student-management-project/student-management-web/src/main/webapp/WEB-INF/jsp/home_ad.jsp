@@ -14,19 +14,19 @@
   <script type="text/javascript">
   function Class_Manage()
   {
-	  $(location).attr('href',"classmanagement.htm");
+	  $(location).attr('href',"/student-management-web/classes/");
   }
   function Permission_Manage()
   {
-	  $(location).attr('href',"permissionmanagement.htm");
+	  $(location).attr('href',"/student-management-web/user/");
   }
    function Subject_Manage()
   {
-	  $(location).attr('href',"subjectmanagement.htm");
+	  $(location).attr('href',"/student-management-web/classes/");
   }
      function Student_Manage()
   {
-	  $(location).attr('href',"studentmanagement.htm");
+	  $(location).attr('href',"/student-management-web/student/");
   }
  
   </script>
