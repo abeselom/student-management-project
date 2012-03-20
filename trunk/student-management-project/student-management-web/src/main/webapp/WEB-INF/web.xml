@@ -60,6 +60,10 @@
 	</filter-mapping>
 	<filter-mapping>
 		<filter-name>PermissionFilter</filter-name>
+		<url-pattern>/student/add/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>PermissionFilter</filter-name>
 		<url-pattern>/student/edit/*</url-pattern>
 	</filter-mapping>
 	<filter-mapping>
