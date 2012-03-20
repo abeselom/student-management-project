@@ -35,7 +35,7 @@
 <body>
    
    <div style="width: 100%;margin-top: 20px;" align="right">
-            <span style='cursor: pointer' class="link" onclick="window.location='logout.htm'">&nbsp;<label>Log out</label> &nbsp;</span>
+            <span style='cursor: pointer' class="link" onclick="window.location='/student-management-web/logout'">&nbsp;<label>Log out</label> &nbsp;</span>
         </div>
  <div class="logo">
     <div class="logo_1"></div>
