@@ -21,6 +21,7 @@
 						<p>Student Name: ${student.name}</p>
 						<p>Student Email: ${student.email}</p>
 						<p>Student Address: ${student.address}</p>
+						<a href="/student-management-web/classes/unenroll?classId=${clazz.clazz_ID}&&studentId=${student.studentId}">Delete</a>
 					</li>
 				</c:forEach>
 			</ul>
