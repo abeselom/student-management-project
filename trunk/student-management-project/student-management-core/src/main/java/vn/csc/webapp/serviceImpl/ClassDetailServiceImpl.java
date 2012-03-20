@@ -42,8 +42,8 @@ public class ClassDetailServiceImpl implements ClassDetailService {
 	}
 
 	@Override
-	public void removeClazzDetail(ClazzDetail clazzDetail) {
-		classDetailBeanRemote.removeClazzDetail(clazzDetail);
+	public void removeClazzDetail(int clazzDetailId) {
+		classDetailBeanRemote.removeClazzDetail(clazzDetailId);
 	}
 
 	@Override
