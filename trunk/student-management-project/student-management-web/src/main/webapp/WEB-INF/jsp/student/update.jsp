@@ -44,7 +44,16 @@
 	<h1>Edit user</h1>
 	<c:url var="addUrl" value="/student/edit" />
 	<h3>Insert User Project's Information</h3>
-
+	<p>${student.name } is member of: </p>
+	<ul>
+		<c:forEach items="${enrolledClassList}" var="classes">
+			<li>
+				<p>Class Id: ${classes.clazz_ID} - Subject: ${classes.subject}
+					<a href="/student-management-web/student/unenroll?classId=${classes.clazz_ID}&&studentId=${student.studentId}">Delete</a>
+				</p>
+			</li>
+		</c:forEach>
+	</ul>
 	<form action="${addUrl}" method="post" name="updateStudentForm"
 		onsubmit="return Validate();">
 		<input name="studentId" type="hidden" value="${student.studentId }" />
@@ -72,10 +81,10 @@
 			<tr>
 				<td>Class</td>
 				<td><select name="classId">
-						<option>Choose...</option>
-						<c:forEach items="${classList}" var="classes">
-							<option value="${classes.clazz_ID}">${classes.subject}</option>
-						</c:forEach>
+					<option value="0">Choose...</option>
+					<c:forEach items="${classList}" var="classes">
+						<option value="${classes.clazz_ID}">${classes.subject}</option>
+					</c:forEach>
 				</select></td>
 			</tr>
 			<tr>
