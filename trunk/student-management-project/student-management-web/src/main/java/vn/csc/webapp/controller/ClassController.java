@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import vn.csc.finalproject.dto.ClazzDTO;
+import vn.csc.finalproject.dto.StudentDTO;
+import vn.csc.webapp.services.ClassDetailService;
 import vn.csc.webapp.services.ClassService;
 
 @Controller
@@ -23,6 +25,9 @@ import vn.csc.webapp.services.ClassService;
 public class ClassController {
 	@Autowired
 	private ClassService classService;
+	
+	@Autowired
+	private ClassDetailService classDetailService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String show(Map<String, Object> map) {
@@ -80,5 +85,16 @@ public class ClassController {
 		int clazzId = Integer.parseInt(request.getParameter("classId"));
 		classService.removeClazz(clazzId);
 		return "redirect:/classes/";
+	}
+	
+	@RequestMapping(value = "/detail")
+	public String detail_Get(HttpServletRequest request, Map<String, Object> map) {
+		int classID = Integer.parseInt(request.getParameter("classId"));
+		ClazzDTO clazzDTO = classService.getClazzById(classID);
+		List<StudentDTO> studentDTOList = classDetailService.GetStudentByClass(classID);
+		map.put("clazz", clazzDTO);
+		map.put("studentList", studentDTOList);
+		map.put("number", studentDTOList.size());
+		return "classes/detail";
 	}
 }
