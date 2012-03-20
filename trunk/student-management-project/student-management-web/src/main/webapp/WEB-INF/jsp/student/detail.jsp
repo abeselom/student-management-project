@@ -17,8 +17,10 @@
 		<li>Classes Of Student:</li>
 			<ul>
 				<c:forEach items="${classList}" var="classes">
-					<li>${classes.clazz_Id}</li>
-					<li>${classes.subject}</li>
+					<li>
+						<p>Class Id: ${classes.clazz_ID}</p>
+						<p>Subject: ${classes.subject}</p>
+					</li>
 				</c:forEach>
 			</ul>
 		</c:if>
