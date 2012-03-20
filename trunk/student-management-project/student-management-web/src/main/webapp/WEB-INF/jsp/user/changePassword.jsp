@@ -58,8 +58,7 @@
 
 			<tr>
 				<td>Password</td>
-				<td><input type="password" id="password" name="password"
-					value="${user.password }" /></td>
+				<td><input type="password" id="password" name="password"/></td>
 				<td id="passwordFail" style="color: red"></td>
 			</tr>
 			<tr>
