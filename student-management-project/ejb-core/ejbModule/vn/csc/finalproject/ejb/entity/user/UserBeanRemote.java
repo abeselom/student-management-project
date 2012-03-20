@@ -22,7 +22,9 @@ public interface UserBeanRemote {
 	
 	public boolean userExisted(String username);
 	
-	public User LogIn(String username, String password);
+	public boolean LogIn(String username, String password);
 	
-	public void updateUser(String username, String password, String email, int type);
+	public void updateUser(String username, String email, int type);
+	
+	public void changePassword(String username, String password);
 }

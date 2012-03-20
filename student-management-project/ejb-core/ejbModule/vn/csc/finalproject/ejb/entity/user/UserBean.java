@@ -70,7 +70,7 @@ public class UserBean implements UserBeanLocal, UserBeanRemote {
 	@SuppressWarnings("unchecked")
 	@Override
 	public User changeUserPermission(String Username, int iType) {
-		if (iType < 1 || iType > 2) {
+		if (iType >= 1 && iType <= 2) {
 			String str = "SELECT a FROM User a WHERE a.username = :name";
 			Query query = em.createQuery(str);
 			query.setParameter("name", Username);
@@ -87,15 +87,15 @@ public class UserBean implements UserBeanLocal, UserBeanRemote {
 	}
 
 	@Override
-	public User LogIn(String username, String password) {
+	public boolean LogIn(String username, String password) {
 		// TODO Auto-generated method stub
 		User user = this.getUserByName(username);
 		if (user != null) {
 			if (user.getPassword().equals(password)) {
-				return user;
+				return true;
 			}
 		}
-		return null;
+		return false;
 	}
 
 	@Override
@@ -107,12 +107,18 @@ public class UserBean implements UserBeanLocal, UserBeanRemote {
 		return rs;
 	}
 
-	public void updateUser(String username, String password, String email,
-			int type) {
+	@Override
+	public void updateUser(String username, String email, int type) {
 		User user = em.find(User.class, username);
 		user.setEmail(email);
-		user.setPassword(password);
 		user.setType(type);
+		em.merge(user);
+	}
+
+	@Override
+	public void changePassword(String username, String password) {
+		User user = em.find(User.class, username);
+		user.setPassword(password);
 		em.merge(user);
 	}
 }
