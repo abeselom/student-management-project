@@ -60,10 +60,10 @@ public class ClazzDetailBean implements ClazzDetailBeanLocal,
 		}
 	}
 
-	public void removeClazzDetail(ClazzDetail clazzDetail) {
+	public void removeClazzDetail(int clazzDetailId) {
 		try {
-			clazzDetail = em.find(ClazzDetail.class,
-					clazzDetail.getClazz_DETAIL_ID());
+			ClazzDetail clazzDetail = em.find(ClazzDetail.class,
+					clazzDetailId);
 			if (clazzDetail != null) {
 				em.remove(clazzDetail);
 			}
@@ -100,5 +100,19 @@ public class ClazzDetailBean implements ClazzDetailBeanLocal,
 			return this.persistClazzDetail(cd);
 		}
 		return null;
+	}
+
+	@Override
+	public ClazzDetail searchClassDetailbyClassAndStudent(int classID, int studentID) {
+		try {
+			String str = "SELECT DISTINCT clazz FROM ClazzDetail clazz WHERE clazz.student.studentId = :stuID AND clazz.clazz.clazz_ID = :claID";
+			Query query = em.createQuery(str);
+			query.setParameter("claID", classID);
+			query.setParameter("stuID", studentID);
+			List<ClazzDetail> rs = (List<ClazzDetail>) query.getResultList();
+			return rs.get(0);
+		} catch (Exception e) {
+			throw new EJBException(e.getMessage());
+		}
 	}
 }
