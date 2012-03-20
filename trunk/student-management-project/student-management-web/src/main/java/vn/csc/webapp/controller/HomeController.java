@@ -30,25 +30,29 @@ public class HomeController {
 
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public String index_Post(HttpServletRequest request, Map<String, Object> map) {
-		try {
-			String username = request.getParameter("txt_id");
-			String password = request.getParameter("txt_pass");
-			UserDTO userDTO = userService.LogIn(username, password);
+		String username = request.getParameter("txt_id");
+		String password = request.getParameter("txt_pass");
+		if(userService.LogIn(username, password)) {
+			UserDTO userDTO = new UserDTO();
+			userDTO = userService.getUserByName(username);
 			HttpSession session = request.getSession(true);
 			session.setAttribute("userName", username);
 			session.setAttribute("type", userDTO.getType());
 			return "redirect:/home";
-		} catch (Exception e) {
-			System.err.println(e.getMessage().toString());
 		}
-		return "index";
+		return "index_err";
 	}
 
 	@RequestMapping(value = "/home")
 	public String home(HttpServletRequest request, Map<String, Object> map) {
 		HttpSession session = request.getSession(true);
+		String username = (String)session.getAttribute("userName");
+		if(username == null || "".equals(username)) {
+			return "redirect:/";
+		}
 		int type = (Integer)session.getAttribute("type");
 		String fileName = null;
+		map.put("username", username);
 		if(type == 1) {
 			fileName = "home_ad";
 		} else {

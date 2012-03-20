@@ -64,6 +64,7 @@ a:link, a:visited, a:active, a:hover
 		</c:choose>
 		</tbody>
 	</table>
-	<a href="/student-management-web/classes/add">Add</a>
+	<p><a href="/student-management-web/classes/add">Add</a></p>
+	<p><a href="/student-management-web/">Back</a></p>
 </body>
 </html>

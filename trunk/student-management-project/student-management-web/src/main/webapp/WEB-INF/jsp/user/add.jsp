@@ -68,7 +68,7 @@ color:white;
 </head>
 <body>
 	<h1>Add User</h1>
-	<c:url var="addUrl" value="/student-management-web/user/add" />
+	<c:url var="addUrl" value="/user/add" />
 	<h3>Insert User Project's Information</h3>
 
 	<form action="${addUrl}" method="post" name="addUserForm"

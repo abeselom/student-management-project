@@ -46,31 +46,21 @@
 </head>
 <body>
 	<h1>Edit user</h1>
-	<c:url var="addUrl" value="/user/edit" />
+	<c:url var="addUrl" value="/user/changePassword" />
 	<h3>Insert User Project's Information</h3>
 
 	<form action="${addUrl}" method="post" name="updateUserForm"
 		onsubmit="return Validate();">
+		<input name="userName" id="userName" type="hidden" value="${user.username }"/>
 		<table>
+
+		
+
 			<tr>
-				<td>Username</td>
-				<td><input name="userName" id="userName" type="text"
-					value="${user.username }" /></td>
-				<td id="usernameFail" style="color: red"></td>
-			</tr>
-			<tr>
-				<td>Email</td>
-				<td><input name="email" type="text" id="email"
-					value="${user.email }" />
-				</td>
-					<td id="emailFail" style="color: red"></td>
-			</tr>
-			<tr>
-				<td>Type</td>
-				<td><select name="selection">
-						<option selected="selected" value="1">Admin</option>
-						<option value="2">User</option>
-				</select></td>
+				<td>Password</td>
+				<td><input type="password" id="password" name="password"
+					value="${user.password }" /></td>
+				<td id="passwordFail" style="color: red"></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center"><input type="submit"

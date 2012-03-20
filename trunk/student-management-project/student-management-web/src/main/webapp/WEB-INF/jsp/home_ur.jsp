@@ -12,17 +12,10 @@
 <link rel="stylesheet" type="text/css" href="Resources/css/style_2.css" media="all" />
  <script type="text/javascript"  src="Resources/js/jquery-1.5.1.js"></script>
   <script type="text/javascript">
-  function Class_Manage()
+  
+   function Change_Password()
   {
-	  $(location).attr('href',"/student-management-web/classes/");
-  }
-  function Permission_Manage()
-  {
-	  $(location).attr('href',"/student-management-web/user/");
-  }
-   function Subject_Manage()
-  {
-	  $(location).attr('href',"/student-management-web/classes/");
+	  $(location).attr('href',"/student-management-web/user/changePassword?username=${username}");
   }
      function Student_Manage()
   {
@@ -35,12 +28,14 @@
 <body>
    
    <div style="width: 100%;margin-top: 20px;" align="right">
+   <h3>Hello ${username}</h3>
             <span style='cursor: pointer' class="link" onclick="window.location='/student-management-web/logout'">&nbsp;<label>Log out</label> &nbsp;</span>
         </div>
  <div class="logo">
     <div class="logo_1"></div>
     <div class="logo_2">
-        <div class="button" align="center"><input type="submit" class="button_1" onclick="Student_Manage()"   name="button_1" value="Student Management"/></div>    
+        <div class="button" align="center"><input type="submit" class="button_1" onclick="Student_Manage()"   name="button_1" value="Student Management"/></div>
+        <div class="button" align="center"><input type="submit" class="button_1" onclick="Change_Password()"   name="button_1" value="Change Password"/></div>    
    </div>
  </div>
 </body>
