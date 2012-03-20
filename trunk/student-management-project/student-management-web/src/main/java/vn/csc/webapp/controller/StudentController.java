@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import vn.csc.finalproject.dto.ClazzDTO;
 import vn.csc.finalproject.dto.StudentDTO;
 import vn.csc.webapp.services.ClassDetailService;
+import vn.csc.webapp.services.ClassService;
 import vn.csc.webapp.services.StudentService;
 
 @Controller
@@ -26,6 +27,9 @@ public class StudentController {
 	
 	@Autowired
 	private ClassDetailService classDetailService;
+	
+	@Autowired
+	private ClassService classService;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String studentManagement(Map<String, Object> map) throws IOException {
@@ -37,6 +41,7 @@ public class StudentController {
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addStudent_GET(Map<String, Object> map) {
+		map.put("classList", classService.getClazzList());
 		return null;
 	}
 
@@ -60,6 +65,7 @@ public class StudentController {
 		int studentId = Integer.parseInt(request.getParameter("studentId"));
 		StudentDTO studentDTO = studentService.getStudentById(studentId);
 		map.put("student", studentDTO);
+		map.put("classList", classService.getClazzList());
 		return "student/update";
 	}
 
@@ -67,12 +73,13 @@ public class StudentController {
 	public String editUser_POST(HttpServletRequest request, Model viewModel) {
 
 		try {
-			String studentID = request.getParameter("studentId");
+			int studentID = Integer.parseInt(request.getParameter("studentId"));
+			int classID = Integer.parseInt(request.getParameter("classId"));
 			String name = request.getParameter("name");
 			String email = request.getParameter("email");
 			String address = request.getParameter("address");
-			studentService.updateStudent(Integer.parseInt(studentID), name,
-					email, address);
+			studentService.updateStudent(studentID, name, email, address);
+			classDetailService.addClazzDetail(classID, studentID);
 		} catch (Exception e) {
 			System.err.println(e.getMessage().toString());
 			viewModel.addAttribute("error", "Can not edit student!");
