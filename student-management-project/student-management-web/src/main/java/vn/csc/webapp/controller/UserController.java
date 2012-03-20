@@ -22,7 +22,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/show", method = RequestMethod.GET)
 	public String show(Map<String, Object> map) {
 		List<UserDTO> userDTOList = new ArrayList<UserDTO>();
 		userDTOList = userService.getUserList();
@@ -49,7 +49,7 @@ public class UserController {
 			System.err.println(e.getMessage().toString());
 			viewModel.addAttribute("error", "Can not create user!");
 		}
-		return "redirect:/user/";
+		return "redirect:/user/show";
 	}
 	
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
@@ -65,15 +65,14 @@ public class UserController {
 		
 		try {
 			String username = request.getParameter("userName");
-			String password = request.getParameter("password");
 			String email = request.getParameter("email");
 			int type = Integer.parseInt(request.getParameter("selection"));
-			userService.updateUser(username, password, email, type);
+			userService.updateUser(username, email, type);
 		} catch (Exception e) {
 			System.err.println(e.getMessage().toString());
 			viewModel.addAttribute("error", "Can not edit user!");
 		}
-		return "redirect:/user/";
+		return "redirect:/user/show";
 	}
 	
 	
@@ -81,6 +80,27 @@ public class UserController {
 	public String removeUser_Post(HttpServletRequest request, Map<String, Object> map) {
 		String username = request.getParameter("username");
 		userService.removeUser(username);
-		return "redirect:/user/";
+		return "redirect:/user/show";
+	}
+	
+	@RequestMapping(value = "/changePassword", method = RequestMethod.GET)
+	public String changePermission_Get(HttpServletRequest request, Map<String, Object> map) {
+		String username = request.getParameter("username");
+		UserDTO userDTO = userService.getUserByName(username);
+		map.put("user", userDTO);
+		return "user/changePassword";
+	}
+	
+	@RequestMapping(value = "/changePassword", method = RequestMethod.POST)
+	public String changePermission_Post(HttpServletRequest request, Model viewModel) {
+		try {
+			String username = request.getParameter("userName");
+			String password = request.getParameter("password");
+			userService.changePassword(username, password);
+		} catch (Exception e) {
+			System.err.println(e.getMessage().toString());
+			viewModel.addAttribute("error", "Can not edit user!");
+		}
+		return "redirect:/home";
 	}
 }

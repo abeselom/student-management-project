@@ -52,7 +52,19 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>PermissionFilter</filter-name>
-		<url-pattern>/user/*</url-pattern>
+		<url-pattern>/user/edit/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>PermissionFilter</filter-name>
+		<url-pattern>/user/show</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>PermissionFilter</filter-name>
+		<url-pattern>/user/add/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>PermissionFilter</filter-name>
+		<url-pattern>/user/delete/*</url-pattern>
 	</filter-mapping>
 	<filter-mapping>
 		<filter-name>PermissionFilter</filter-name>
