@@ -89,7 +89,6 @@ public class ClazzDetailBean implements ClazzDetailBeanLocal,
 
 	@Override
 	public ClazzDetail addClazzDetail(int classID, int studentID) {
-		// TODO Auto-generated method stub
 		Clazz clazz = em.find(Clazz.class, classID);
 		Student student = em.find(Student.class, studentID);
 
